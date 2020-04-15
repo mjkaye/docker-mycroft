@@ -1,13 +1,13 @@
-FROM ubuntu:18.04
+FROM debian:buster-slim
 
+ARG host_locale=en_US.UTF-8
 ENV TERM linux
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install Server Dependencies for Mycroft
 RUN set -x \
-	&& sed -i 's/# \(.*multiverse$\)/\1/g' /etc/apt/sources.list \
-	&& apt-get update \
-	&& apt-get -y install git python3 python3-pip locales sudo \
+    	&& apt-get update \
+	&& apt-get -y install git python3 python3-pip locales sudo procps \
 	&& pip3 install future msm \
 	# Checkout Mycroft
 	&& git clone https://github.com/MycroftAI/mycroft-core.git /opt/mycroft \
@@ -19,20 +19,12 @@ RUN set -x \
 	&& touch /opt/mycroft/scripts/logs/mycroft-bus.log \
 	&& touch /opt/mycroft/scripts/logs/mycroft-voice.log \
 	&& touch /opt/mycroft/scripts/logs/mycroft-skills.log \
-	&& touch /opt/mycroft/scripts/logs/mycroft-audio.log \
-	&& apt-get -y autoremove \
-	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN curl https://forslund.github.io/mycroft-desktop-repo/mycroft-desktop.gpg.key | apt-key add - 2> /dev/null && \
-    echo "deb http://forslund.github.io/mycroft-desktop-repo bionic main" > /etc/apt/sources.list.d/mycroft-desktop.list
-RUN apt-get update && apt-get install -y mimic
+	&& touch /opt/mycroft/scripts/logs/mycroft-audio.log
 
 # Set the locale
-RUN locale-gen en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
+RUN sed -i -e 's/# \('"$host_locale"' .*\)/\1/' /etc/locale.gen \
+    	&& dpkg-reconfigure --frontend=noninteractive locales \
+	&& update-locale LANG=$host_locale
 
 WORKDIR /opt/mycroft
 COPY startup.sh /opt/mycroft
@@ -43,6 +35,15 @@ RUN echo "PATH=$PATH:/opt/mycroft/bin" >> $HOME/.bashrc \
 
 RUN chmod +x /opt/mycroft/start-mycroft.sh \
 	&& chmod +x /opt/mycroft/startup.sh
+
+COPY install-mimic-arm.sh /opt/mycroft/scripts
+RUN chmod +x /opt/mycroft/scripts/install-mimic-arm.sh \
+    	&& /opt/mycroft/scripts/install-mimic-arm.sh
+
+RUN set -x \
+    	&& apt-get -y autoremove \
+	&& apt-get clean \
+	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 EXPOSE 8181
 
