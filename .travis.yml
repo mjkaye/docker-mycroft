@@ -2,6 +2,10 @@ sudo: required
 
 language: python
 
+arch:
+  - amd64
+  - arm64
+
 services:
   - docker
 
