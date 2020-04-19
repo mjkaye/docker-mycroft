@@ -1,11 +1,18 @@
-ARG BASE_IMAGE_PREFIX
-FROM ${BASE_IMAGE_PREFIX}debian:buster-slim
-
 # see hooks/post_checkout
 ARG ARCH
 
+FROM alpine AS builder
+
+# Download QEMU, see https://github.com/docker/hub-feedback/issues/1261
+ENV QEMU_URL https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/qemu-3.0.0+resin-${ARCH}.tar.gz
+RUN apk add curl && curl -L ${QEMU_URL} | tar zxvf - -C . --strip-components 1
+
+ARG BASE_IMAGE_PREFIX
+FROM ${BASE_IMAGE_PREFIX}debian:buster-slim
+
+
 # HACK: don't fail when no qemu binary provided
-COPY .gitignore qemu-${ARCH}-static* /usr/bin/
+COPY --from=builder qemu-${ARCH}-static* /usr/bin
 
 ARG host_locale=en_US.UTF-8
 ENV TERM linux
@@ -13,7 +20,12 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Install Server Dependencies for Mycroft
 RUN set -x \
-    	&& apt-get update \
+    	&& echo "==================================================================" \
+	&& echo "Building Mycroft-AI:" \
+	&& echo "  arch:\t${ARCH}" \
+	&& echo "  base_image_prefix:\t${BASE_IMAGE_PREFIX}" \
+    	&& echo "==================================================================" \
+	&& apt-get update \
 	&& apt-get -y install git python3 python3-pip locales sudo procps \
 	&& pip3 install future msm \
 	# Checkout Mycroft
