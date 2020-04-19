@@ -1,4 +1,11 @@
-FROM debian:buster-slim
+ARG BASE_IMAGE_PREFIX
+FROM ${BASE_IMAGE_PREFIX}debian:buster-slim
+
+# see hooks/post_checkout
+ARG ARCH
+
+# HACK: don't fail when no qemu binary provided
+COPY .gitignore qemu-${ARCH}-static* /usr/bin/
 
 ARG host_locale=en_US.UTF-8
 ENV TERM linux
