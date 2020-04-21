@@ -15,6 +15,9 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN set -x \
     	&& apt-get update \
 	&& apt-get -y install git python3 python3-pip locales sudo procps \
+	# Needed if we want multiarch autobuilds until
+	# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=923479 is closed.
+	&& c_rehash \
 	&& pip3 install future msm \
 	# Checkout Mycroft
 	&& git clone https://github.com/MycroftAI/mycroft-core.git /opt/mycroft \
