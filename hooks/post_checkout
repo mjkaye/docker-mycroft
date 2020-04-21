@@ -4,11 +4,11 @@ set -eu
 echo "🔵 post_checkout"
 source hooks/.config
 
-echo "✅ Install qemu + binfmt support"
+echo "✅ Install binfmt support"
 echo "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯"
 # it's an Ubuntu VM and you can install stuff.
 apt-get update
-apt-get install -y curl qemu-user-static binfmt-support jq moreutils
+apt-get install -y curl binfmt-support jq moreutils
 
 # Sadly docker itself uses Docker EE 17.06 on Dockerhub which does not support
 # manifests.
@@ -42,7 +42,10 @@ echo "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯�
 #      - wait for https://github.com/moby/moby/issues/14080
 #
 for arch in ${build_architectures[@]}; do
-  cp /usr/bin/qemu-${docker_qemu_arch_map[${arch}]}-static qemu-${arch}-static
+  if [ "$arch" != "$host_architecture" ]; then
+      # Balena only supports arm32 and aarch64. We're restricted to those until we find an alternative.
+      curl -L https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/qemu-3.0.0+resin-${arch}.tar.gz | tar zxvf - -C . --strip-components 1
+  fi
 done
 
 ls -la
