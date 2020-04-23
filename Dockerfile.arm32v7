@@ -1,5 +1,4 @@
-ARG BASE_IMAGE_PREFIX
-FROM ${BASE_IMAGE_PREFIX}debian:buster-slim
+FROM arm32v7/debian:buster-slim
 
 ARG host_locale=en_US.UTF-8
 ENV TERM linux
