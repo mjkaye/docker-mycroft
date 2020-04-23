@@ -1,13 +1,13 @@
-# Mycroft Docker Development Environment
+# Mycroft AI Docker image running on slimified Debian Linux
 
-[![Build Status](https://travis-ci.org/mjkaye/docker-mycroft.svg?branch=docker-mycroft-debian-slim)](https://travis-ci.org/mjkaye/docker-mycroft)
+[![Build Status](https://cloud.drone.io/api/badges/mjkaye/docker-mycroft-debian-slim/status.svg)](https://cloud.drone.io/mjkaye/docker-mycroft-debian-slim)
 
 ## Install
 ### Get image from Docker hub
-This repo is updated on [dockerhub](https://hub.docker.com/r/mjkaye/docker-mycroft-debian-slim/) and you can have it without building it, by simply running the below command.
+This repo is updated on [dockerhub](https://hub.docker.com/r/mjkaye/mycroft-debian-slim/) and you can have it without building it, by simply running the below command.
 
 ```bash
-docker pull mjkaye/docker-mycroft-debian-slim
+docker pull mjkaye/mycroft-debian-slim
 ```
 
 ### Build image
@@ -41,7 +41,7 @@ docker run -d \
 -v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native \
 -v ~/.config/pulse/cookie:/root/.config/pulse/cookie \
 -p 8181:8181 \
---name mycroft mjkaye/docker-mycroft-debian-slim
+--name mycroft mjkaye/mycroft-debian-slim
 ```
 
 Confirm via docker ps that your container is up and serving port 8181:

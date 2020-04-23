@@ -13,7 +13,7 @@ steps:
       from_secret: docker_username
     password:
       from_secret: docker_password
-    repo: mjkaye/docker-mycroft-debian-slim
+    repo: mjkaye/mycroft-debian-slim
     tags: latest-amd64
 
 ---
@@ -33,7 +33,7 @@ steps:
       from_secret: docker_username
     password:
       from_secret: docker_password
-    repo: mjkaye/docker-mycroft-debian-slim
+    repo: mjkaye/mycroft-debian-slim
     tags: latest-arm
 
 ---
@@ -52,7 +52,7 @@ steps:
       from_secret: docker_username
     password:
       from_secret: docker_password
-    repo: mjkaye/docker-mycroft-debian-slim
+    repo: mjkaye/mycroft-debian-slim
     tags: latest-arm64
 
 ---
@@ -67,8 +67,8 @@ steps:
       from_secret: docker_username
     password:
       from_secret: docker_password
-    target: mjkaye/docker-mycroft-debian-slim:latest
-    template: mjkaye/docker-mycroft-debian-slim:latest-ARCH
+    target: mjkaye/mycroft-debian-slim:latest
+    template: mjkaye/mycroft-debian-slim:latest-ARCH
     platforms:
       - linux/amd64
       - linux/arm
