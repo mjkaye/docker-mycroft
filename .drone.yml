@@ -28,13 +28,15 @@ steps:
 - name: docker-build-arm
   image: plugins/docker
   settings:
-    dockerfile: Dockerfile.arm32v7
+    # dockerfile: Dockerfile.arm32v7
     username:
       from_secret: docker_username
     password:
       from_secret: docker_password
     repo: mjkaye/mycroft-debian-slim
     tags: latest-arm
+    build_args:
+      - BASE_IMAGE_PREFIX=arm32v7
 
 ---
 kind: pipeline
