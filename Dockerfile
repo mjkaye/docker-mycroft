@@ -26,7 +26,7 @@ RUN set -x \
 
 RUN curl https://forslund.github.io/mycroft-desktop-repo/mycroft-desktop.gpg.key | apt-key add - 2> /dev/null && \
     echo "deb http://forslund.github.io/mycroft-desktop-repo bionic main" > /etc/apt/sources.list.d/mycroft-desktop.list
-RUN apt-get update && apt-get install -y mimic=1.3.0.1
+RUN apt-get update && apt-get install -y mimic
 
 # Set the locale
 RUN sed -i -e 's/# \('"$host_locale"' .*\)/\1/' /etc/locale.gen \
