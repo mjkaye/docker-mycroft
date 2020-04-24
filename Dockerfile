@@ -11,7 +11,7 @@ RUN set -x \
 	&& apt-get -y install git python3 python3-pip locales sudo procps \
 	&& pip3 install future msm \
 	# Checkout Mycroft
-	&& git clone https://github.com/MycroftAI/mycroft-core.git /opt/mycroft \
+	&& git clone --branch=release/v20.2.2 https://github.com/MycroftAI/mycroft-core.git /opt/mycroft \
 	&& cd /opt/mycroft \
 	&& mkdir /opt/mycroft/skills \
 	# git fetch && git checkout dev && \ this branch is now merged to master

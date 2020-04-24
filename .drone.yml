@@ -6,7 +6,7 @@ platform:
   arch: amd64
 
 steps:
-- name: docker-build-amd64
+- name: docker-build
   image: plugins/docker
   settings:
     username:
@@ -14,7 +14,11 @@ steps:
     password:
       from_secret: docker_password
     repo: mjkaye/mycroft-debian-slim
-    tags: latest-amd64
+    tags:
+      - latest-amd64
+      - 20.2.2-amd64
+      - 20.2-amd64
+      - 20-amd64
 
 ---
 kind: pipeline
@@ -25,7 +29,7 @@ platform:
   arch: arm
 
 steps:
-- name: docker-build-arm
+- name: docker-build
   image: plugins/docker
   settings:
     username:
@@ -33,9 +37,13 @@ steps:
     password:
       from_secret: docker_password
     repo: mjkaye/mycroft-debian-slim
-    tags: latest-arm
     build_args:
       - BASE_IMAGE_PREFIX=arm32v7/
+    tags:
+      - latest-arm
+      - 20.2.2-arm
+      - 20.2-arm
+      - 20-arm
 
 ---
 kind: pipeline
@@ -46,7 +54,7 @@ platform:
   arch: arm64
 
 steps:
-- name: docker-build-arm64
+- name: docker-build
   image: plugins/docker
   settings:
     username:
@@ -54,14 +62,57 @@ steps:
     password:
       from_secret: docker_password
     repo: mjkaye/mycroft-debian-slim
-    tags: latest-arm64
+    tags:
+      - latest-arm64
+      - 20.2.2-arm64
+      - 20.2-arm64
+      - 20-arm64
 
 ---
 kind: pipeline
 name: push_manifest
 
 steps:
-- name: manifest
+- name: manifest-20
+  image: plugins/manifest
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    target: mjkaye/mycroft-debian-slim:20
+    template: mjkaye/mycroft-debian-slim:20-ARCH
+    platforms:
+      - linux/amd64
+      - linux/arm
+      - linux/arm64
+- name: manifest-20.2
+  image: plugins/manifest
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    target: mjkaye/mycroft-debian-slim:20.2
+    template: mjkaye/mycroft-debian-slim:20.2-ARCH
+    platforms:
+      - linux/amd64
+      - linux/arm
+      - linux/arm64
+- name: manifest-20.2.2
+  image: plugins/manifest
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    target: mjkaye/mycroft-debian-slim:20.2.2
+    template: mjkaye/mycroft-debian-slim:20.2.2-ARCH
+    platforms:
+      - linux/amd64
+      - linux/arm
+      - linux/arm64
+- name: manifest-latest
   image: plugins/manifest
   settings:
     username:
