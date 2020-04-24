@@ -14,7 +14,6 @@ RUN set -x \
 	&& git clone --branch=release/v20.2.2 https://github.com/MycroftAI/mycroft-core.git /opt/mycroft \
 	&& cd /opt/mycroft \
 	&& mkdir /opt/mycroft/skills \
-	# git fetch && git checkout dev && \ this branch is now merged to master
 	&& CI=true /opt/mycroft/./dev_setup.sh --allow-root -sm \
 	&& mkdir /opt/mycroft/scripts/logs \
 	&& touch /opt/mycroft/scripts/logs/mycroft-bus.log \
@@ -27,7 +26,7 @@ RUN set -x \
 
 RUN curl https://forslund.github.io/mycroft-desktop-repo/mycroft-desktop.gpg.key | apt-key add - 2> /dev/null && \
     echo "deb http://forslund.github.io/mycroft-desktop-repo bionic main" > /etc/apt/sources.list.d/mycroft-desktop.list
-RUN apt-get update && apt-get install -y mimic
+RUN apt-get update && apt-get install -y mimic=1.3.0.1
 
 # Set the locale
 RUN sed -i -e 's/# \('"$host_locale"' .*\)/\1/' /etc/locale.gen \
@@ -43,15 +42,6 @@ RUN echo "PATH=$PATH:/opt/mycroft/bin" >> $HOME/.bashrc \
 
 RUN chmod +x /opt/mycroft/start-mycroft.sh \
 	&& chmod +x /opt/mycroft/startup.sh
-
-# COPY install-mimic-arm.sh /opt/mycroft/scripts
-# RUN chmod +x /opt/mycroft/scripts/install-mimic-arm.sh \
-#     	&& /opt/mycroft/scripts/install-mimic-arm.sh
-
-# RUN set -x \
-#     	&& apt-get -y autoremove \
-# 	&& apt-get clean \
-# 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 EXPOSE 8181
 
