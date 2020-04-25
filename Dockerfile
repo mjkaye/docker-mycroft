@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # Install Server Dependencies for Mycroft
 RUN set -x \
     	&& apt-get update \
-	&& apt-get -y install git python3 python3-pip locales sudo procps \
+	&& apt-get -y install git python3 python3-pip locales sudo \
 	&& pip3 install future msm \
 	# Checkout Mycroft
 	&& git clone --branch=release/v20.2.2 https://github.com/MycroftAI/mycroft-core.git /opt/mycroft \
