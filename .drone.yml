@@ -14,6 +14,8 @@ steps:
     password:
       from_secret: docker_password
     repo: mjkaye/mycroft-debian-slim
+    build_args:
+      - mimic_pkg=./mimic_1.3.0.0_amd64.deb
     tags:
       - latest-amd64
       - 20.2.2-amd64
@@ -39,6 +41,7 @@ steps:
     repo: mjkaye/mycroft-debian-slim
     build_args:
       - BASE_IMAGE_PREFIX=arm32v7/
+      - mimic_pkg=./mimic_1.3.0.1_armhf.deb
     tags:
       - latest-arm
       - 20.2.2-arm
@@ -62,6 +65,8 @@ steps:
     password:
       from_secret: docker_password
     repo: mjkaye/mycroft-debian-slim
+    build_args:
+      - mimic_pkg=./mimic_1.2.0.2+1559651054_arm64.deb
     tags:
       - latest-arm64
       - 20.2.2-arm64
