@@ -9,7 +9,7 @@
 
 [![Github repository](https://img.shields.io/static/v1.svg?style=for-the-badge&color=blue&label=source%20code&message=docker-mycroft-debian-slim&logo=github&logoColor=FFFFFF)](https://www.github.com/mjkaye/docker-mycroft-debian-slim)
 
-## What is Mycroft AI ##
+## What is Mycroft AI? ##
 
 [Mycroft AI](https://mycroft.ai/) is the world's first Free and Open Source (FOSS) voice assistant. You can buy a Mycroft smart speaker from [the shop](https://mycroft.ai/shop/), get hold of a [DIY version](https://hellochatterbox.com/), or run the software on a device of your choosing--desktop computer, Single Board Computer (including the Raspberry Pi), etc. This Docker image is one such way to do so.
 
