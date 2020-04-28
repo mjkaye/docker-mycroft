@@ -1,2 +1,3 @@
 .git
-snapshot_mimic_pkgs.sh
+.gitignore
+*~

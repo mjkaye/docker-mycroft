@@ -1,13 +1,13 @@
 ARG BASE_IMAGE_PREFIX
 FROM ${BASE_IMAGE_PREFIX}debian:buster-slim
 
-# mimic_pkg defaults to installing from the remote repo. To make sure you
-# install the version that accompanied this Mycroft AI release, uncomment the
-# right package for your architecture.
+# mimic_pkg defaults to installing the latest version available from the remote
+# repo. To make sure you install the version that accompanied this Mycroft AI
+# release, uncomment the version that matches your architecture.
 ARG mimic_pkg=mimic
-# ARG mimic_pkg=./mimic_1.3.0.0_amd64.deb
-# ARG mimic_pkg=./mimic_1.3.0.1_armhf.deb
-# ARG mimic_pkg=./mimic_1.2.0.2+1559651054_arm64.deb
+# ARG mimic_pkg=mimic=1.3.0.0
+# ARG mimic_pkg=mimic=1.3.0.1
+# ARG mimic_pkg=mimic=1.2.0.2+1559651054
 
 ARG host_locale=en_US.UTF-8
 
@@ -31,18 +31,16 @@ RUN set -x \
 	&& touch /opt/mycroft/scripts/logs/mycroft-skills.log \
 	&& touch /opt/mycroft/scripts/logs/mycroft-audio.log
 
-COPY packages/ /opt/mycroft
 RUN curl https://forslund.github.io/mycroft-desktop-repo/mycroft-desktop.gpg.key \
 	| apt-key add - 2> /dev/null \
 	&& echo "deb http://forslund.github.io/mycroft-desktop-repo bionic main" \
 	> /etc/apt/sources.list.d/mycroft-desktop.list \
 	&& cd /opt/mycroft \
 	&& apt-get update \
-	&& apt install -y $mimic_pkg \
+	&& apt-get install -y $mimic_pkg \
 	&& apt-get -y autoremove \
 	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-	&& rm -f ./mimic_*.deb
+	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Set the locale
 RUN sed -i -e 's/# \('"$host_locale"' .*\)/\1/' /etc/locale.gen \
@@ -54,9 +52,8 @@ COPY startup.sh /opt/mycroft
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 
 RUN echo "PATH=$PATH:/opt/mycroft/bin" >> $HOME/.bashrc \
-        && echo "source /opt/mycroft/.venv/bin/activate" >> $HOME/.bashrc
-
-RUN chmod +x /opt/mycroft/start-mycroft.sh \
+        && echo "source /opt/mycroft/.venv/bin/activate" >> $HOME/.bashrc \
+	&& chmod +x /opt/mycroft/start-mycroft.sh \
 	&& chmod +x /opt/mycroft/startup.sh
 
 EXPOSE 8181
