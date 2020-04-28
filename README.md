@@ -1,9 +1,12 @@
 # Mycroft AI Docker image running on slimified Debian Linux
 
 [![Build Status](https://cloud.drone.io/api/badges/mjkaye/docker-mycroft-debian-slim/status.svg)](https://cloud.drone.io/mjkaye/docker-mycroft-debian-slim)
+
 [![Docker pulls](https://img.shields.io/docker/pulls/mjkaye/mycroft-debian-slim.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/r/mjkaye/mycroft-debian-slim)
+
 [![Mycroft AI version](https://img.shields.io/badge/Mycroft%20AI%20version-20.2.2-blue.svg?style=for-the-badge)](https://mycroft.ai/)
 [![Debian slim version](https://img.shields.io/badge/Debian%20slim%20version-buster-blue.svg?style=for-the-badge)](https://www.debian.org/)
+
 [![Github repository](https://img.shields.io/static/v1.svg?style=for-the-badge&color=blue&label=source%20code&message=docker-mycroft-debian-slim&logo=github&logoColor=FFFFFF)](https://www.github.com/mjkaye/docker-mycroft-debian-slim)
 
 ## What is Mycroft AI ##
@@ -16,12 +19,12 @@ Control technology with your voice.
 
 Debian is an operating system that is comprised mostly of Free and Open Source Software. It is one of the most popular Linux distributions and forms the basis of many others.
 
-Debian slim exludes files that are not often required within a container, such as documentation. This base image is around 25MiB.
+Debian slim excludes files that are not often required within a container, such as documentation. This base image is around 25MiB.
 
 ## Supported architectures ##
 
 | Architecture   | Tag          |
-|----------------+--------------|
+| ---            | ---          |
 | amd64/x86_64   | latest-amd64 |
 | arm32v7(armhf) | latest-arm   |
 | aarch64        | latest-arm64 |
@@ -43,10 +46,10 @@ docker run -d \
 
 ### Parameters ###
 
-Container images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<host>:<container>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080`.
+Container images are configured using parameters passed at run-time (such as those above). These parameters are separated by a colon and indicate `<host>:<container>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080`.
 
 | Parameter                 | Function                                                                                                                |
-| :----:                    | ---                                                                                                                     |
+| ---                       | ---                                                                                                                     |
 | `-p 8181:8181`            | grants LAN access to Mycroft (e.g. to send notifications); optional                                                     |
 | `-e PULSE_SERVER`         | access pulseaudio on the host; see pulse/native volume                                                                  |
 | `-v :...pulse/native`     | shares ...pulse/native with the host                                                                                    |
@@ -65,7 +68,7 @@ docker logs mycroft | grep "Pairing code:"
 
 ### CLI access ###
 
-Get access to the conainer CLI with:
+Get access to the container CLI with:
 
 ```bash
 docker exec -it mycroft /bin/bash
