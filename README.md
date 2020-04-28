@@ -1,110 +1,90 @@
 # Mycroft AI Docker image running on slimified Debian Linux
 
 [![Build Status](https://cloud.drone.io/api/badges/mjkaye/docker-mycroft-debian-slim/status.svg)](https://cloud.drone.io/mjkaye/docker-mycroft-debian-slim)
+[![Docker pulls](https://img.shields.io/docker/pulls/mjkaye/mycroft-debian-slim.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/r/mjkaye/mycroft-debian-slim)
+[![Mycroft AI version](https://img.shields.io/badge/Mycroft%20AI%20version-20.2.2-blue.svg?style=for-the-badge)](https://mycroft.ai/)
+[![Debian slim version](https://img.shields.io/badge/Debian%20slim%20version-buster-blue.svg?style=for-the-badge)](https://www.debian.org/)
+[![Github repository](https://img.shields.io/static/v1.svg?style=for-the-badge&color=blue&label=source%20code&message=docker-mycroft-debian-slim&logo=github&logoColor=FFFFFF)](https://www.github.com/mjkaye/docker-mycroft-debian-slim)
 
-## Install
-### Get image from Docker hub
-This repo is updated on [dockerhub](https://hub.docker.com/r/mjkaye/mycroft-debian-slim/) and you can have it without building it, by simply running the below command.
+## What is Mycroft AI ##
 
-```bash
-docker pull mjkaye/mycroft-debian-slim
-```
+[Mycroft AI](https://mycroft.ai/) is the world's first Free and Open Source (FOSS) voice assistant. You can buy a Mycroft smart speaker from [the shop](https://mycroft.ai/shop/), get hold of a [DIY version](https://hellochatterbox.com/), or run the software on a device of your choosing--desktop computer, Single Board Computer (including the Raspberry Pi), etc. This Docker image is one such way to do so.
 
-### Build image
-Git pull this repository.
+Control technology with your voice.
 
-```bash
-git clone https://github.com/mjkaye/docker-mycroft-debian-slim.git
-```
+## What is Debian slim? ##
 
-Build the docker image in the directory that you have checked out.
+Debian is an operating system that is comprised mostly of Free and Open Source Software. It is one of the most popular Linux distributions and forms the basis of many others.
 
-```bash
-docker build -t mycroft .
-```
+Debian slim exludes files that are not often required within a container, such as documentation. This base image is around 25MiB.
 
-## Run
-To get persistent data and don't have, for example, to pair our instance every time the container is started. You can map a local directory into the container. Just replace the directory_on_local_machine with where you want the container mapped on your local machine (eg: /home/user/mycroft).
+## Supported architectures ##
 
-Sounds can be played in the container using pulseaudio, without modifying any config files (Thanks to [fsmunoz](https://github.com/jessfraz/dockerfiles/issues/85#issuecomment-299431931)).
+| Architecture   | Tag          |
+|----------------+--------------|
+| amd64/x86_64   | latest-amd64 |
+| arm32v7(armhf) | latest-arm   |
+| aarch64        | latest-arm64 |
 
-* Set [PULSE_SERVER](https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Network/#directconnection) env variable
-* Share pulseaudio's [cookie](https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/User/Network/#authorization)
-
-Run the following to start up mycroft:
+## How to use this image ##
 
 ```bash
 docker run -d \
--v directory_on_local_machine:/root/.mycroft \
---device /dev/snd \
--e PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
--v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native \
--v ~/.config/pulse/cookie:/root/.config/pulse/cookie \
--p 8181:8181 \
---name mycroft mjkaye/mycroft-debian-slim
+  --name mycroft
+  -e PULSE_SERVER=unix:/run/user/0/pulse/native \
+  -p 8181:8181 \
+  -v ${XDG_RUNTIME_DIR}/pulse/native:/run/user/0/pulse/native \
+  -v ~/.config/pulse/cookie:/root/.config/pulse/cookie \
+  -v config:/root/.mycroft \
+  -v skills:/opt/mycroft/skills \
+  --restart unless-stopped
+  mjkaye/mycroft-debian-slim
 ```
 
-Confirm via docker ps that your container is up and serving port 8181:
+### Parameters ###
+
+Container images are configured using parameters passed at runtime (such as those above). These parameters are separated by a colon and indicate `<host>:<container>` respectively. For example, `-p 8080:80` would expose port `80` from inside the container to be accessible from the host's IP on port `8080`.
+
+| Parameter                 | Function                                                                                                                |
+| :----:                    | ---                                                                                                                     |
+| `-p 8181:8181`            | grants LAN access to Mycroft (e.g. to send notifications); optional                                                     |
+| `-e PULSE_SERVER`         | access pulseaudio on the host; see pulse/native volume                                                                  |
+| `-v :...pulse/native`     | shares ...pulse/native with the host                                                                                    |
+| `-v :/root/.mycroft`      | persistent storage for configuration                                                                                    |
+| `-v :/opt/mycroft/skills` | persistent storage for installed skills (so that they don't have to be reinstalled every time the container is started) |
+
+### Pairing ###
+
+If your audio is configured correctly, you should hear your Mycroft instance telling you a pairing code to use at https://home.mycroft.ai
+
+If you don't have audio set up, you can see the pairing code by examining the logs:
 
 ```bash
-docker ps
-CONTAINER ID        IMAGE                                                COMMAND                  CREATED             STATUS              PORTS                                            NAMES
-692219e23bf2        mycroft                                    "/mycroft/ai/mycro..."         3 seconds ago         Up 1 second           0.0.0.0:8181->8181/tcp                          mycroft
+docker logs mycroft | grep "Pairing code:"
 ```
 
-You should now have a running instance of mycroft that you can interact with via the cli, etc.
+### CLI access ###
 
-## Logs
-At any time you can watch the logs simply by running the bellow command:
-
-```bash
-docker logs -f mycroft
-```
-
-You can exit out of this docker log command by hitting ctrl + c, the `--follow` basically turns it into a real tail instead of a cat of the log.
-
-## CLI Access
-You can interact with the CLI of the container by running the following command, this will connect you to the running container via bash:
+Get access to the conainer CLI with:
 
 ```bash
 docker exec -it mycroft /bin/bash
 ```
 
-Once in the container you can do `./start-mycroft.sh cli` to get a interactive CLI to interact with mycroft if needed.
-
-You can hit ctrl + c to exit the cli.
-
-## Pairing Instance
-After the container has been started you can watch the logs and look for the line that says Pairing Code and use this to pair at https://home.mycroft.ai.
-
-You can filter the logs to get the pairing code as such:
+From the container's command prompt, start the CLI console with:
 
 ```bash
-docker logs mycroft | grep "Pairing code:"
-
+mycroft-cli-client
 ```
 
-## Skills
-You can watch the logs and confirm it installs/deletes skills.
+## Support ##
 
-### Install
-You can install skills into the container from outside by running the following:
+ * [Mycroft AI documentation](https://mycroft-ai.gitbook.io/docs/)
+ * [Mycroft AI community](https://community.mycroft.ai/)
+ * [report Mycroft AI bugs](https://github.com/MycroftAI/mycroft-core/issues)
+ * [report bugs related to this Docker image](https://github.com/mjkaye/docker-mycroft-debian-slim/issues)
+ * [contribute to Mycroft AI](https://mycroft.ai/contribute/)
 
-```bash
-docker exec -it mycroft /usr/local/bin/msm install github_url
-```
+## Donation ##
 
-So to install say my basic-skill helper:
-
-```bash
-docker exec -it mycroft /opt/mycroft/msm/msm install https://github.com/btotharye/mycroft-skill-basichelp
-```
-
-### Remove
-You can uninstall a skill by removing the folder location for it
-
-```bash
-docker exec -it mycroft rm -rf /opt/mycroft/skills/mycroft-skill-basichelp
-```
-
-This would remove the above test basic help skill.
+[![Donate using Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/mjkaye/donate)
