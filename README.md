@@ -58,7 +58,7 @@ Container images are configured using parameters passed at run-time (such as tho
 
 ### Pairing ###
 
-If your audio is configured correctly, you should hear your Mycroft instance telling you a pairing code to use at https://home.mycroft.ai
+If your audio is configured correctly, you should hear your Mycroft instance giving you a pairing code that you should use at https://home.mycroft.ai
 
 If you don't have audio set up, you can see the pairing code by examining the logs:
 
