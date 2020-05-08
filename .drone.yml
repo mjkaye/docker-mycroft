@@ -18,7 +18,7 @@ steps:
       - mimic_pkg=mimic=1.3.0.0
     tags:
       - latest-amd64
-      - 20.2.2-amd64
+      - 20.2.3-amd64
       - 20.2-amd64
       - 20-amd64
 
@@ -44,7 +44,7 @@ steps:
       - mimic_pkg=mimic=1.3.0.1
     tags:
       - latest-arm
-      - 20.2.2-arm
+      - 20.2.3-arm
       - 20.2-arm
       - 20-arm
 
@@ -69,7 +69,7 @@ steps:
       - mimic_pkg=mimic=1.2.0.2+1559651054
     tags:
       - latest-arm64
-      - 20.2.2-arm64
+      - 20.2.3-arm64
       - 20.2-arm64
       - 20-arm64
 
@@ -104,15 +104,15 @@ steps:
       - linux/amd64
       - linux/arm
       - linux/arm64
-- name: manifest-20.2.2
+- name: manifest-20.2.3
   image: plugins/manifest
   settings:
     username:
       from_secret: docker_username
     password:
       from_secret: docker_password
-    target: mjkaye/mycroft-debian-slim:20.2.2
-    template: mjkaye/mycroft-debian-slim:20.2.2-ARCH
+    target: mjkaye/mycroft-debian-slim:20.2.3
+    template: mjkaye/mycroft-debian-slim:20.2.3-ARCH
     platforms:
       - linux/amd64
       - linux/arm

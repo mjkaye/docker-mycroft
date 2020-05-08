@@ -53,7 +53,7 @@ RUN set -x \
 	&& pip3 install future msm \
 	# Checkout Mycroft
 	&& git clone https://github.com/MycroftAI/mycroft-core.git /opt/mycroft \
-	--branch=release/v20.2.2 \
+	--branch=release/v20.2.3 \
 	&& cd /opt/mycroft \
 	&& mkdir /opt/mycroft/skills \
 	&& pip3 install \

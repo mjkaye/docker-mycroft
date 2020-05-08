@@ -4,7 +4,7 @@
 
 [![Docker pulls](https://img.shields.io/docker/pulls/mjkaye/mycroft-debian-slim.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/r/mjkaye/mycroft-debian-slim)
 
-[![Mycroft AI version](https://img.shields.io/badge/Mycroft%20AI%20version-20.2.2-blue.svg?style=for-the-badge)](https://mycroft.ai/)
+[![Mycroft AI version](https://img.shields.io/badge/Mycroft%20AI%20version-20.2.3-blue.svg?style=for-the-badge)](https://mycroft.ai/)
 [![Debian slim version](https://img.shields.io/badge/Debian%20slim%20version-buster-blue.svg?style=for-the-badge)](https://www.debian.org/)
 
 [![Github repository](https://img.shields.io/static/v1.svg?style=for-the-badge&color=blue&label=source%20code&message=docker-mycroft-debian-slim&logo=github&logoColor=FFFFFF)](https://www.github.com/mjkaye/docker-mycroft-debian-slim)
@@ -79,6 +79,8 @@ From the container's command prompt, start the CLI console with:
 ```bash
 mycroft-cli-client
 ```
+
+When the image starts, it installs all the requirements for the installed services. This takes some time and Mycroft is not ready until this process has finished.
 
 ## Support ##
 
