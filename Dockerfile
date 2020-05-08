@@ -20,28 +20,50 @@ RUN set -x \
 	&& apt-get -y install \
 	git \
 	locales \
+	procps \
 	python3 \
 	python3-pip \
-	procps \
 	sudo \
+	# Previously from dev_setup.sh
+	# autoconf \
+        # automake \
+        bison \
+        # build-essential \
+        curl \
+        flac \
+        jq \
+        libfann-dev \
+        libffi-dev \
+        # libglib2.0-dev \
+        # libicu-dev \
+        libjpeg-dev \
+        libssl-dev \
+        libtool \
+        mpg123 \
+        pkg-config \
+        portaudio19-dev \
+        pulseaudio \
+        pulseaudio-utils \
+        # python3-dev \
+        python3-setuptools \
+        # screen \
+	swig \
+	# Possibly remove
+	zlib1g-dev \
 	&& pip3 install future msm \
 	# Checkout Mycroft
-	&& git clone --branch=release/v20.2.2 \
-	https://github.com/MycroftAI/mycroft-core.git /opt/mycroft \
+	&& git clone https://github.com/MycroftAI/mycroft-core.git /opt/mycroft \
+	--branch=release/v20.2.2 \
 	&& cd /opt/mycroft \
 	&& mkdir /opt/mycroft/skills \
-	&& CI=true /opt/mycroft/./dev_setup.sh --allow-root -sm \
-	&& mkdir /opt/mycroft/scripts/logs \
-	&& touch /opt/mycroft/scripts/logs/mycroft-bus.log \
-	&& touch /opt/mycroft/scripts/logs/mycroft-voice.log \
-	&& touch /opt/mycroft/scripts/logs/mycroft-skills.log \
-	&& touch /opt/mycroft/scripts/logs/mycroft-audio.log
+	&& pip3 install \
+	-r /opt/mycroft/requirements.txt \
+	-r /opt/mycroft/test-requirements.txt 
 
 RUN curl https://forslund.github.io/mycroft-desktop-repo/mycroft-desktop.gpg.key \
 	| apt-key add - 2> /dev/null \
 	&& echo "deb http://forslund.github.io/mycroft-desktop-repo bionic main" \
 	> /etc/apt/sources.list.d/mycroft-desktop.list \
-	&& cd /opt/mycroft \
 	&& apt-get update \
 	&& apt-get install -y $mimic_pkg \
 	&& apt-get -y autoremove \
@@ -58,9 +80,28 @@ COPY startup.sh /opt/mycroft
 ENV PYTHONPATH $PYTHONPATH:/mycroft/ai
 
 RUN echo "PATH=$PATH:/opt/mycroft/bin" >> $HOME/.bashrc \
-        && echo "source /opt/mycroft/.venv/bin/activate" >> $HOME/.bashrc \
+	&& ln -s /usr/bin/python3 /usr/bin/python \
+	# We don't use virtualenv any more. Make stub for scripts that try to.
+	&& echo "" > /opt/mycroft/venv-activate.sh \
 	&& chmod +x /opt/mycroft/start-mycroft.sh \
-	&& chmod +x /opt/mycroft/startup.sh
+	&& chmod +x /opt/mycroft/startup.sh \
+        && chmod +x /opt/mycroft/bin/mycroft-cli-client \
+        && chmod +x /opt/mycroft/bin/mycroft-help \
+        && chmod +x /opt/mycroft/bin/mycroft-mic-test \
+        && chmod +x /opt/mycroft/bin/mycroft-msk \
+        && chmod +x /opt/mycroft/bin/mycroft-msm \
+        && chmod +x /opt/mycroft/bin/mycroft-pip \
+        && chmod +x /opt/mycroft/bin/mycroft-say-to \
+        && chmod +x /opt/mycroft/bin/mycroft-skill-testrunner \
+	&& chmod +x /opt/mycroft/bin/mycroft-speak
+
+RUN mkdir /var/log/mycroft/ \
+	&& chmod 777 /var/log/mycroft/
+
+#Store a fingerprint of setup
+RUN md5sum /opt/mycroft/requirements.txt \
+	/opt/mycroft/test-requirements.txt \
+	/opt/mycroft/dev_setup.sh > /opt/mycroft/.installed
 
 EXPOSE 8181
 
