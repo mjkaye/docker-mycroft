@@ -1,4 +1,4 @@
-# Mycroft AI Docker image running on slimified Debian Linux
+# Mycroft AI Docker image running on slimified Debian Linux #
 
 [![Build Status](https://cloud.drone.io/api/badges/mjkaye/docker-mycroft-debian-slim/status.svg)](https://cloud.drone.io/mjkaye/docker-mycroft-debian-slim)
 
@@ -23,11 +23,11 @@ Debian slim excludes files that are not often required within a container, such 
 
 ## Supported architectures ##
 
-| Architecture   | Tag          |
-| ---            | ---          |
-| amd64/x86_64   | latest-amd64 |
-| arm32v7(armhf) | latest-arm   |
-| aarch64        | latest-arm64 |
+| Architecture  | Tag          |
+| ---           | ---          |
+| amd64/x86_64  | latest-amd64 |
+| arm32v7/armhf | latest-arm   |
+| aarch64/arm64 | latest-arm64 |
 
 ## How to use this image ##
 
@@ -90,6 +90,13 @@ When the image starts, it installs all the requirements for the installed servic
  * [report bugs related to this Docker image](https://github.com/mjkaye/docker-mycroft-debian-slim/issues)
  * [contribute to Mycroft AI](https://mycroft.ai/contribute/)
 
-## Donation ##
+## Donate ##
 
-[![Donate using Liberapay](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/mjkaye/donate)
+|                                                                                                                                                                                                                                                               |                                                                                                 |
+| ---                                                                                                                                                                                                                                                           | ---                                                                                             |
+| [![Donate using Donorbox](https://img.shields.io/badge/usd,gbp,eur-265B79?logo=shopify&style=for-the-badge)](https://donorbox.org/docker-images)                                                                                                              |                                                                                                 |
+| [![Donate using Bitcoin](https://img.shields.io/badge/bitcoin-265B79?logo=bitcoin&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=bc1q2acfmcwrqc9pzttqgwn6nd0t5cncleue6ukfrs)                                                   | bc1q2acfmcwrqc9pzttqgwn6nd0t5cncleue6ukfrs                                                      |
+| [![Donate using Ethereum](https://img.shields.io/badge/ethereum-265B79?logo=ethereum&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=0x95ab6d374ef0d3a84bb7c767cdf6c77b3b170ba2)                                                | 0x95ab6d374ef0d3a84bb7c767cdf6c77b3b170ba2                                                      |
+| [![Donate using Dash](https://img.shields.io/badge/dash-265B79?logo=dash&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=XxVEjb1uYFnBGLm59eytUHBDWAYTHeyrET)                                                                    | XxVEjb1uYFnBGLm59eytUHBDWAYTHeyrET                                                              |
+| [![Donate using Monero](https://img.shields.io/badge/monero-265B79?logo=monero&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=46PNRCAb9oq244vALWaRX5GzWJHtkZEqKav3BJBFBSsrPbL44A5PwEa4RVkS5xMzRtT2MUjhX9QhibiFjjBbdADa5V3TXzJ) | 46PNRCAb9oq244vALWaRX5GzWJHtkZEqKav3BJBFBSsrPbL44A5PwEa4RVkS5xMzRtT2MUjhX9QhibiFjjBbdADa5V3TXzJ |
+| [![Donate using Groestlcoin](https://img.shields.io/badge/groestlcoin-265B79?&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=grs1q4gu2xfg8q448tlajg8grqkrlw9rjvuz29vctmj)                                                      | grs1q4gu2xfg8q448tlajg8grqkrlw9rjvuz29vctmj                                                     |
