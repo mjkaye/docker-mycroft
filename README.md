@@ -92,11 +92,36 @@ When the image starts, it installs all the requirements for the installed servic
 
 ## Donate ##
 
-|                                                                                                                                                                                                                                                               |                                                                                                 |
-| ---                                                                                                                                                                                                                                                           | ---                                                                                             |
-| [![Donate using Donorbox](https://img.shields.io/badge/usd,gbp,eur-265B79?logo=shopify&style=for-the-badge)](https://donorbox.org/docker-images)                                                                                                              |                                                                                                 |
-| [![Donate using Bitcoin](https://img.shields.io/badge/bitcoin-265B79?logo=bitcoin&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=bc1q2acfmcwrqc9pzttqgwn6nd0t5cncleue6ukfrs)                                                   | bc1q2acfmcwrqc9pzttqgwn6nd0t5cncleue6ukfrs                                                      |
-| [![Donate using Ethereum](https://img.shields.io/badge/ethereum-265B79?logo=ethereum&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=0x95ab6d374ef0d3a84bb7c767cdf6c77b3b170ba2)                                                | 0x95ab6d374ef0d3a84bb7c767cdf6c77b3b170ba2                                                      |
-| [![Donate using Dash](https://img.shields.io/badge/dash-265B79?logo=dash&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=XxVEjb1uYFnBGLm59eytUHBDWAYTHeyrET)                                                                    | XxVEjb1uYFnBGLm59eytUHBDWAYTHeyrET                                                              |
-| [![Donate using Monero](https://img.shields.io/badge/monero-265B79?logo=monero&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=46PNRCAb9oq244vALWaRX5GzWJHtkZEqKav3BJBFBSsrPbL44A5PwEa4RVkS5xMzRtT2MUjhX9QhibiFjjBbdADa5V3TXzJ) | 46PNRCAb9oq244vALWaRX5GzWJHtkZEqKav3BJBFBSsrPbL44A5PwEa4RVkS5xMzRtT2MUjhX9QhibiFjjBbdADa5V3TXzJ |
-| [![Donate using Groestlcoin](https://img.shields.io/badge/groestlcoin-265B79?&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=grs1q4gu2xfg8q448tlajg8grqkrlw9rjvuz29vctmj)                                                      | grs1q4gu2xfg8q448tlajg8grqkrlw9rjvuz29vctmj                                                     |
+[![Donate using Donorbox](https://img.shields.io/badge/usd,gbp,eur-265B79?logo=shopify&style=for-the-badge)](https://donorbox.org/docker-images)
+
+---
+
+[![Donate using Bitcoin](https://img.shields.io/badge/bitcoin-265B79?logo=bitcoin&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=bc1q2acfmcwrqc9pzttqgwn6nd0t5cncleue6ukfrs)
+
+bc1q2acfmcwrqc9pzttqgwn6nd0t5cncleue6ukfrs
+
+---
+
+[![Donate using Ethereum](https://img.shields.io/badge/ethereum-265B79?logo=ethereum&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=0x95ab6d374ef0d3a84bb7c767cdf6c77b3b170ba2)
+
+0x95ab6d374ef0d3a84bb7c767cdf6c77b3b170ba2
+
+---
+
+[![Donate using Dash](https://img.shields.io/badge/dash-265B79?logo=dash&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=XxVEjb1uYFnBGLm59eytUHBDWAYTHeyrET)
+
+XxVEjb1uYFnBGLm59eytUHBDWAYTHeyrET
+
+---
+
+[![Donate using Monero](https://img.shields.io/badge/monero-265B79?logo=monero&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=49couTFdiXHhmodRY49DSt4uwLb5SK9d8QXoUQh6TmMgAmNhWVjtXzri1Qq2AWzTVxaYqbhbthXi1R7hKxM4cTvSFKrFcv1)
+
+49couTFdiXHhmodRY49DSt4uwLb5SK9d8QXoUQh6TmMgAmNhWVjtXzri1Qq2AWzTVxaYqbhbthXi1R7hKxM4cTvSFKrFcv1
+
+---
+
+[![Donate using Groestlcoin](https://img.shields.io/badge/groestlcoin-265B79?&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=grs1q4gu2xfg8q448tlajg8grqkrlw9rjvuz29vctmj)
+
+grs1q4gu2xfg8q448tlajg8grqkrlw9rjvuz29vctmj
+
+---
