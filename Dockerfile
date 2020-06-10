@@ -24,18 +24,12 @@ RUN set -x \
 	python3 \
 	python3-pip \
 	sudo \
-	# Previously from dev_setup.sh
-	# autoconf \
-        # automake \
         bison \
-        # build-essential \
         curl \
         flac \
         jq \
         libfann-dev \
         libffi-dev \
-        # libglib2.0-dev \
-        # libicu-dev \
         libjpeg-dev \
         libssl-dev \
         libtool \
@@ -44,21 +38,17 @@ RUN set -x \
         portaudio19-dev \
         pulseaudio \
         pulseaudio-utils \
-        # python3-dev \
         python3-setuptools \
-        # screen \
 	swig \
-	# Possibly remove
 	zlib1g-dev \
 	&& pip3 install future msm \
 	# Checkout Mycroft
 	&& git clone https://github.com/MycroftAI/mycroft-core.git /opt/mycroft \
-	--branch=release/v20.2.3 \
+	--branch=release/v20.2.4 \
 	&& cd /opt/mycroft \
 	&& mkdir /opt/mycroft/skills \
 	&& pip3 install \
-	-r /opt/mycroft/requirements.txt \
-	-r /opt/mycroft/test-requirements.txt 
+	-r /opt/mycroft/requirements/requirements.txt
 
 RUN curl https://forslund.github.io/mycroft-desktop-repo/mycroft-desktop.gpg.key \
 	| apt-key add - 2> /dev/null \
@@ -99,9 +89,7 @@ RUN mkdir /var/log/mycroft/ \
 	&& chmod 777 /var/log/mycroft/
 
 #Store a fingerprint of setup
-RUN md5sum /opt/mycroft/requirements.txt \
-	/opt/mycroft/test-requirements.txt \
-	/opt/mycroft/dev_setup.sh > /opt/mycroft/.installed
+RUN md5sum /opt/mycroft/requirements/requirements.txt > /opt/mycroft/.installed
 
 EXPOSE 8181
 

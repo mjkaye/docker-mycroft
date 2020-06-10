@@ -1,21 +1,25 @@
-# Mycroft AI Docker image running on slimified Debian Linux #
+![mjkaye's logo](https://gistcdn.githack.com/mjkaye/1c98964af75456ccfca37c2a9a105825/raw/d1ac0b27dc154eb5f26026be55cab124adfde4d2/mjkaye-gradient.svg)
 
-[![Build Status](https://cloud.drone.io/api/badges/mjkaye/docker-mycroft-debian-slim/status.svg)](https://cloud.drone.io/mjkaye/docker-mycroft-debian-slim)
+# Mycroft AI running on slimified Debian Linux #
 
-[![Docker pulls](https://img.shields.io/docker/pulls/mjkaye/mycroft-debian-slim.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/r/mjkaye/mycroft-debian-slim)
+[![Build Status](https://img.shields.io/drone/build/mjkaye/docker-mycroft-debian-slim.svg?style=for-the-badge&logo=drone)](https://cloud.drone.io/mjkaye/docker-mycroft-debian-slim)
 
-[![Mycroft AI version](https://img.shields.io/badge/Mycroft%20AI%20version-20.2.3-blue.svg?style=for-the-badge)](https://mycroft.ai/)
-[![Debian slim version](https://img.shields.io/badge/Debian%20slim%20version-buster-blue.svg?style=for-the-badge)](https://www.debian.org/)
-
-[![Github repository](https://img.shields.io/static/v1.svg?style=for-the-badge&color=blue&label=source%20code&message=docker-mycroft-debian-slim&logo=github&logoColor=FFFFFF)](https://www.github.com/mjkaye/docker-mycroft-debian-slim)
+[![Mycroft AI version](https://img.shields.io/badge/Mycroft%20AI%20version-20.2.4-blue.svg?style=for-the-badge&logoColor=FFFFFF&color=878a00)](https://mycroft.ai/)
+[![Debian slim version](https://img.shields.io/badge/Debian%20slim%20version-buster-blue.svg?style=for-the-badge&logoColor=FFFFFF&color=878a00)](https://www.debian.org/)
+[![Github repository](https://img.shields.io/badge/source_code-docker--mycroft--debian--slim-878a00.svg?style=for-the-badge&logo=github&logoColor=FFFFFF&color=878a00)](https://www.github.com/mjkaye/docker-mycroft-debian-slim)
+[![Docker pulls](https://img.shields.io/docker/pulls/mjkaye/mycroft-debian-slim.svg?style=for-the-badge&logo=docker&logoColor=FFFFFF&color=878a00)](https://hub.docker.com/r/mjkaye/mycroft-debian-slim)
 
 ## What is Mycroft AI? ##
+
+[![Mycroft AI logo](https://d1us95wkqce0jo.cloudfront.net/site/company/logo/38529_914107.png)](https://mycroft.ai/)
 
 [Mycroft AI](https://mycroft.ai/) is the world's first Free and Open Source (FOSS) voice assistant. You can buy a Mycroft smart speaker from [the shop](https://mycroft.ai/shop/), get hold of a [DIY version](https://hellochatterbox.com/), or run the software on a device of your choosing--desktop computer, Single Board Computer (including the Raspberry Pi), etc. This Docker image is one such way to do so.
 
 Control technology with your voice.
 
 ## What is Debian slim? ##
+
+[![Debian logo](https://www.debian.org/logos/openlogo.svg)](https://www.debian.org/)
 
 Debian is an operating system that is comprised mostly of Free and Open Source Software. It is one of the most popular Linux distributions and forms the basis of many others.
 
@@ -90,38 +94,61 @@ When the image starts, it installs all the requirements for the installed servic
  * [report bugs related to this Docker image](https://github.com/mjkaye/docker-mycroft-debian-slim/issues)
  * [contribute to Mycroft AI](https://mycroft.ai/contribute/)
 
-## Donate ##
 
-[![Donate using Donorbox](https://img.shields.io/badge/usd,gbp,eur-265B79?logo=shopify&style=for-the-badge)](https://donorbox.org/docker-images)
+## Changelog ##
+
+* __20.2.4:__ - Upstream release 20.2.4, adapt to new requirements structure.
+* __20.2.3:__ - Upstream release 20.2.3, stop using virtualenv, include procps for start-mycroft.sh, improvements to README.md, specify Mimic package version.
+* __20.2.2:__ - Upstream release 20.2.2, rebase to debian:buster-slim, support architectures arm32v7, aarch64, and amd64.
+
+## Thank you ##
+
+Thank you for using mycroft-debian-slim.
+
+Do you like this Docker image? Perhaps you would consider donating? Donations help me to devote more time to improving these images. My current focus is to make this image as small and resource-efficient as possible. Even the smallest of donations are a big help.
+
+[![Donate using Donorbox](https://img.shields.io/badge/usd,_gbp,_eur-00578A?style=for-the-badge&logoColor=FFFFFF&labelColor=00578A&logo=cash%20app)](https://donorbox.org/docker-images)
 
 ---
 
-[![Donate using Bitcoin](https://img.shields.io/badge/bitcoin-265B79?logo=bitcoin&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=bc1q2acfmcwrqc9pzttqgwn6nd0t5cncleue6ukfrs)
+[![Donate using Bitcoin](https://img.shields.io/badge/bitcoin-00578A?style=for-the-badge&logoColor=FFFFFF&labelColor=00578A&logo=bitcoin)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=bc1q2acfmcwrqc9pzttqgwn6nd0t5cncleue6ukfrs)
 
 bc1q2acfmcwrqc9pzttqgwn6nd0t5cncleue6ukfrs
 
 ---
 
-[![Donate using Ethereum](https://img.shields.io/badge/ethereum-265B79?logo=ethereum&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=0x95ab6d374ef0d3a84bb7c767cdf6c77b3b170ba2)
+[![Donate using Ethereum](https://img.shields.io/badge/ethereum-00578A?style=for-the-badge&logoColor=FFFFFF&labelColor=00578A&logo=ethereum)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=0x95ab6d374ef0d3a84bb7c767cdf6c77b3b170ba2)
 
 0x95ab6d374ef0d3a84bb7c767cdf6c77b3b170ba2
 
 ---
 
-[![Donate using Dash](https://img.shields.io/badge/dash-265B79?logo=dash&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=XxVEjb1uYFnBGLm59eytUHBDWAYTHeyrET)
+[![Donate using Dash](https://img.shields.io/badge/dash-00578A?style=for-the-badge&logoColor=FFFFFF&labelColor=00578A&logo=dash)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=XxVEjb1uYFnBGLm59eytUHBDWAYTHeyrET)
 
 XxVEjb1uYFnBGLm59eytUHBDWAYTHeyrET
 
 ---
 
-[![Donate using Monero](https://img.shields.io/badge/monero-265B79?logo=monero&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=49couTFdiXHhmodRY49DSt4uwLb5SK9d8QXoUQh6TmMgAmNhWVjtXzri1Qq2AWzTVxaYqbhbthXi1R7hKxM4cTvSFKrFcv1)
+[![Donate using Monero](https://img.shields.io/badge/monero-00578A?style=for-the-badge&logoColor=FFFFFF&labelColor=00578A&logo=monero)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=49couTFdiXHhmodRY49DSt4uwLb5SK9d8QXoUQh6TmMgAmNhWVjtXzri1Qq2AWzTVxaYqbhbthXi1R7hKxM4cTvSFKrFcv1)
 
 49couTFdiXHhmodRY49DSt4uwLb5SK9d8QXoUQh6TmMgAmNhWVjtXzri1Qq2AWzTVxaYqbhbthXi1R7hKxM4cTvSFKrFcv1
 
 ---
 
-[![Donate using Groestlcoin](https://img.shields.io/badge/groestlcoin-265B79?&style=for-the-badge)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=grs1q4gu2xfg8q448tlajg8grqkrlw9rjvuz29vctmj)
+[![Donate using Groestlcoin](https://img.shields.io/badge/groestlcoin-00578A?style=for-the-badge&logoColor=FFFFFF&labelColor=00578A)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=grs1q4gu2xfg8q448tlajg8grqkrlw9rjvuz29vctmj)
 
 grs1q4gu2xfg8q448tlajg8grqkrlw9rjvuz29vctmj
+
+---
+
+[![Donate using NANO](https://img.shields.io/badge/NANO-00578A?style=for-the-badge&logoColor=FFFFFF&labelColor=00578A)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=nano_1ro9tk49hje9f31r6x869z18rgbiertsc1jgw6siqb6c9cziywk1u4zq766z)
+
+nano_1ro9tk49hje9f31r6x869z18rgbiertsc1jgw6siqb6c9cziywk1u4zq766z
+
+---
+
+[![Donate using TRON](https://img.shields.io/badge/TRON-00578A?style=for-the-badge&logoColor=FFFFFF&labelColor=00578A)](https://www.freeformatter.com/qr-code?w=350&h=350&e=Q&c=TTna1P4yTLueZAunmxAu4p4qYZGQ28VTYE)
+
+TTna1P4yTLueZAunmxAu4p4qYZGQ28VTYE
 
 ---
