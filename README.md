@@ -99,13 +99,13 @@ When the image starts, it installs all the requirements for the installed servic
 
 * __20.2.4:__ - Upstream release 20.2.4, adapt to new requirements structure.
 * __20.2.3:__ - Upstream release 20.2.3, stop using virtualenv, include procps for start-mycroft.sh, improvements to README.md, specify Mimic package version.
-* __20.2.2:__ - Upstream release 20.2.2, rebase to debian:buster-slim, support architectures arm32v7, aarch64, and amd64.
+* __20.2.2:__ - Upstream release 20.2.2; rebase to debian:buster-slim; support architectures arm32v7, aarch64, and amd64.
 
 ## Thank you ##
 
 Thank you for using mycroft-debian-slim.
 
-Do you like this Docker image? Perhaps you would consider donating? Donations help me to devote more time to improving these images. My current focus is to make this image as small and resource-efficient as possible. Even the smallest of donations are a big help.
+Do you like this Docker image? Donations help me to devote more time to improving these images. My current focus is to make this image as small and resource-efficient as possible. Even the smallest donation is a big help.
 
 [![Donate using Donorbox](https://img.shields.io/badge/usd,_gbp,_eur-00578A?style=for-the-badge&logoColor=FFFFFF&labelColor=00578A&logo=cash%20app)](https://donorbox.org/docker-images)
 
