@@ -11,19 +11,24 @@ ARG mimic_pkg=mimic
 
 ARG host_locale=en_US.UTF-8
 
+ARG mycroft_core_tag=release/v20.8.1
+
 ENV TERM linux
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install Server Dependencies for Mycroft
 RUN set -x \
-    	&& apt-get update \
+        && apt-get update \
 	&& apt-get -y install \
 	git \
 	locales \
 	procps \
 	python3 \
 	python3-pip \
+        python3-dev \
 	sudo \
+        build-essential \
+        cargo \
         bison \
         curl \
         flac \
@@ -41,13 +46,15 @@ RUN set -x \
         python3-setuptools \
 	swig \
 	zlib1g-dev \
-	&& pip3 install future msm \
-	# Checkout Mycroft
-	&& git clone https://github.com/MycroftAI/mycroft-core.git /opt/mycroft \
-	--branch=release/v20.2.4 \
+        # Cryptography
+	&& curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y \
+        && pip3 install --upgrade pip \
+        && pip3 install cryptography --no-binary cryptography \
+        # Checkout Mycroft
+	&& git clone https://github.com/MycroftAI/mycroft-core.git /opt/mycroft --branch=$mycroft_core_tag \
 	&& cd /opt/mycroft \
 	&& mkdir /opt/mycroft/skills \
-	&& pip3 install \
+	&& pip3 install --upgrade --ignore-installed pyxdg \
 	-r /opt/mycroft/requirements/requirements.txt
 
 RUN curl https://forslund.github.io/mycroft-desktop-repo/mycroft-desktop.gpg.key \
@@ -62,7 +69,7 @@ RUN curl https://forslund.github.io/mycroft-desktop-repo/mycroft-desktop.gpg.key
 
 # Set the locale
 RUN sed -i -e 's/# \('"$host_locale"' .*\)/\1/' /etc/locale.gen \
-    	&& dpkg-reconfigure --frontend=noninteractive locales \
+        && dpkg-reconfigure --frontend=noninteractive locales \
 	&& update-locale LANG=$host_locale
 
 WORKDIR /opt/mycroft
