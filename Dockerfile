@@ -48,13 +48,12 @@ RUN set -x \
 	zlib1g-dev \
         # Cryptography
 	&& curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y \
-        && pip3 install --upgrade pip \
-        && pip3 install cryptography --no-binary cryptography \
+        && python3 -m pip install cryptography --no-binary cryptography \
         # Checkout Mycroft
 	&& git clone https://github.com/MycroftAI/mycroft-core.git /opt/mycroft --branch=$mycroft_core_tag \
 	&& cd /opt/mycroft \
 	&& mkdir /opt/mycroft/skills \
-	&& pip3 install --upgrade --ignore-installed pyxdg \
+	&& python3 -m pip install --upgrade \
 	-r /opt/mycroft/requirements/requirements.txt
 
 RUN curl https://forslund.github.io/mycroft-desktop-repo/mycroft-desktop.gpg.key \
